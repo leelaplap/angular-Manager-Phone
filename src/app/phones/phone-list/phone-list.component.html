@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-12">
+      <div class="card">
+        <h5 class="card-header">
+          <div class="row">
+            <div class="col-6">
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" (keyup)="filter($event)">
+              </form>
+            </div>
+            <div class="col-3">
+              <button type="button" class="btn btn-outline-success" (click)="showImage()">Hide/Show</button>
+            </div>
+            <div class="col-3">
+              <button type="button" class="btn btn-primary" routerLink="/phones/create">Create</button>
+            </div>
+          </div>
+        </h5>
+        <div class="card-body">
+          <p style="color: blueviolet">
+            <span class="fa fa-star star"></span>
+            {{showMess}}
+            <span class="fa fa-star star"></span>
+          </p>
+          <table class="table table-striped table-dark">
+            <thead>
+            <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <ng-container *ngIf="showImg">
+                <th scope="col">Image</th>
+              </ng-container>
+              <th scope="col">Rating</th>
+              <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let phone of listPhone,let i = index">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{phone.name| uppercase}}</td>
+              <td>{{phone.price}}</td>
+              <ng-container *ngIf="showImg">
+                <td>
+                  <img src="{{phone.image}}" alt="" width="{{widthImg}}">
+                </td>
+              </ng-container>
+              <td>
+                <app-star [star]="phone.star" (message)="showMessage($event)"></app-star>
+              </td>
+              <td>
+                <button type="button" class="btn btn-danger" (click)="delete(i)">Delete</button>&nbsp;
+                <button type="button" class="btn btn-info" routerLink="{{i}}/edit">Edit</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

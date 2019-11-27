@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <form [formGroup]="updatePhoneForm" (ngSubmit)="submit()">
+        <div class="form-group">
+          <label>Phone Name</label>
+          <input type="text" class="form-control" placeholder="Enter phone name" formControlName="name">
+        </div>
+        <div class="form-group">
+          <label>Price</label>
+          <input type="text" class="form-control" placeholder="Enter price" formControlName="price">
+        </div>
+        <div class="form-group">
+          <label>Rating</label>
+          <input type="text" class="form-control" placeholder="Enter rating" formControlName="star">
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!updatePhoneForm.valid">Submit</button>
+        <button type="submit" class="btn btn-secondary" routerLink="">Cancel</button>
+
+      </form>
+    </div>
+  </div>
+</div>
